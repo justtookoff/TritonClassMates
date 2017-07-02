@@ -5,21 +5,24 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.android.tritonclassmates.MainActivity">
+    tools:context="com.android.tritonclassmates.FreeBoardActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/homeToolbar"
+        android:id="@+id/freeBoardToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         app:theme= "@style/ThemeOverlay.AppCompat.Light" />
 
     <ListView
-        android:id="@+id/board_list_view"
+        android:id="@+id/freeBoard_list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ListView>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/freeBoardToolbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
 
 </LinearLayout>
