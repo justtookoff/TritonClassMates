@@ -2,11 +2,14 @@ package com.android.tritonclassmates;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ListView;
 
 /**
@@ -30,6 +33,16 @@ public class FreeBoardActivity extends AppCompatActivity {
         //Setting the toolbar name and action bar
         freeBoard_Toolbar.setTitle("FreeBoard");
         setSupportActionBar(freeBoard_Toolbar);
+
+        //Floating action button for writing
+        FloatingActionButton writePost = (FloatingActionButton) findViewById(R.id.write_post);
+        writePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), PostActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
 
     }
 
@@ -59,13 +72,10 @@ public class FreeBoardActivity extends AppCompatActivity {
                 break;
             case R.id.action_settings:
                 break;
-            case R.id.write_post:
-                intent = new Intent(this, PostActivity.class);
-                startActivityForResult(intent, 0);
-                break;
             default:
                 break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 

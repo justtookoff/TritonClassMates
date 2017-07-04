@@ -19,13 +19,5 @@
         android:title="Refresh"
         android:visible="true"
         app:showAsAction="always"></item>
-    <item
-        android:id="@+id/write_post"
-        android:checkable="false"
-        android:enabled="true"
-        android:icon="@android:drawable/ic_menu_edit"
-        android:orderInCategory="101"
-        android:title="Write"
-        android:visible="true"
-        app:showAsAction="always"></item>
+
 </menu>

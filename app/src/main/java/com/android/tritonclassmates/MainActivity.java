@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void populatePreListView(){
         //Create lists of items
-        String[] items = { "FreeBoardActivity", "AnonymousBoard", "InfoBoard", "JobBoard", "BuyAndSell", "ClubBoard"};
+        String[] items = { "FreeBoard", "AnonymousBoard", "InfoBoard", "JobBoard", "BuyAndSell", "ClubBoard", "TimeTable"};
 
         //Build Adapter
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
@@ -86,6 +86,9 @@ public class MainActivity extends AppCompatActivity {
                         //intent = new Intent(viewClicked.getContext(), ClubBoard.class);
                         //startActivityForResult(intent, 0);
                         break;
+                    case 6:
+                        intent = new Intent(viewClicked.getContext(), TimeTableActivity.class);
+                        startActivityForResult(intent, 0);
                     default:
                         break;
                 }
