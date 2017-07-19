@@ -2,6 +2,7 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+
     <item
         android:id="@+id/action_camera"
         android:enabled="true"
@@ -17,6 +18,14 @@
         android:enabled="true"
         android:icon="@android:drawable/ic_menu_gallery"
         android:orderInCategory="101"
+        android:visible="true"
+        app:showAsAction="always"></item>
+
+    <item
+        android:id="@+id/action_save"
+        android:title="Save"
+        android:enabled="true"
+        android:orderInCategory="102"
         android:visible="true"
         app:showAsAction="always"></item>
 
