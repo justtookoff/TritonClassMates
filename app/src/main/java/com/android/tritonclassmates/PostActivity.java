@@ -1,5 +1,6 @@
 package com.android.tritonclassmates;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -8,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -67,11 +69,10 @@ public class PostActivity extends AppCompatActivity {
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
-        Intent intent;
-
         switch(item.getItemId()) {
             case R.id.action_camera:
                 //Use google api to take a picture within this app
+                this.camera();
                 break;
             case R.id.action_picture:
                 //Go to the gallery to get the pictures
@@ -147,10 +148,18 @@ public class PostActivity extends AppCompatActivity {
      * This method is to show the album of the phone
      */
     private void photoPicker(){
+        //Check the permission
+        int permissionCheck = ContextCompat.checkSelfPermission(PostActivity.this,
+                Manifest.permission.READ_EXTERNAL_STORAGE);
+
         //This is to show the album of the phone by using intent and the code of the gallery
         Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
         photoPickerIntent.setType("image/*");
         startActivityForResult(photoPickerIntent, IMAGE_GALLERY_REQUEST);
+    }
+
+    private void camera(){
+
     }
 
 
