@@ -114,12 +114,13 @@ public class FreeBoardActivity extends AppCompatActivity {
             freeBoard_ListView.setAdapter(na);
 
             //set click listener for items in the list, by clicking each item the note should be loaded into NoteActivity
+            //FreeBoard에 있는 게시물을 클릭했을때! 뷰모드로 켜져여함
             freeBoard_ListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    //run the NoteActivity in view/edit mode
                     String fileName = ((Post) freeBoard_ListView.getItemAtPosition(position)).getDateTime()
                             + Utilities.FILE_EXTENSION;
+
                     Intent viewNoteIntent = new Intent(getApplicationContext(), PostActivity.class);
                     viewNoteIntent.putExtra(Utilities.EXTRAS_NOTE_FILENAME, fileName);
                     startActivity(viewNoteIntent);

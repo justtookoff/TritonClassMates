@@ -16,6 +16,7 @@ public class Post implements Serializable {
     private long dateTime;
     private String title;
     private String content;
+    private int like;
 
     /**
      * This is the constructor of Post class
@@ -27,6 +28,7 @@ public class Post implements Serializable {
         this.dateTime = dateTime;
         this.title = title;
         this.content = content;
+        this.like = 0;
     }
 
     public String getDateTimeFormatted(Context context) {
@@ -34,6 +36,18 @@ public class Post implements Serializable {
                 , context.getResources().getConfiguration().locale);
         sdf.setTimeZone(TimeZone.getDefault());
         return sdf.format(new Date(this.dateTime));
+    }
+
+    public int addLiked(){
+        this.like++;
+        return this.getLike();
+    }
+
+    public int minusLike(){
+        if(this.like > 0) {
+            this.like--;
+        }
+        return this.getLike();
     }
 
     //Setters
@@ -49,6 +63,7 @@ public class Post implements Serializable {
         this.content = content;
     }
 
+
     //Getters
     public long getDateTime(){
         return this.dateTime;
@@ -60,6 +75,10 @@ public class Post implements Serializable {
 
     public String getContent(){
         return this.content;
+    }
+
+    public int getLike() {
+        return this.like;
     }
 
 }

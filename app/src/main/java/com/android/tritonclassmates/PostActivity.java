@@ -7,12 +7,15 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.style.ImageSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -24,6 +27,9 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+
 /**
  * Created by Donghwee on 2017-06-30.
  */
@@ -34,6 +40,9 @@ public class PostActivity extends AppCompatActivity {
     private TextView postDate;
     private EditText postContent;
 
+    private String fileName;
+    private Post loadPost = null;
+    private long postCreationTime;
 
     private static final int IMAGE_GALLERY_REQUEST = 1;
 
@@ -48,6 +57,24 @@ public class PostActivity extends AppCompatActivity {
 
         //Setting the toolbar
         setSupportActionBar(postToolbar);
+
+        //Check if they have content already
+        //Get filename first
+        //이거는 포스트를 로딩하는거임..(loading the post if already existed)
+        fileName = getIntent().getStringExtra(Utilities.EXTRAS_NOTE_FILENAME);
+        if(fileName != null && !fileName.isEmpty() && fileName.endsWith(Utilities.FILE_EXTENSION)) {
+            loadPost = Utilities.getNoteByFileName(getApplicationContext(), fileName);
+
+            if(loadPost != null){
+                postTitle.setText(loadPost.getTitle());
+                postContent.setText(loadPost.getContent());
+                postCreationTime = loadPost.getDateTime();
+            }
+            else{
+                postCreationTime = System.currentTimeMillis();
+            }
+        }
+
     }
 
     /**
@@ -158,6 +185,9 @@ public class PostActivity extends AppCompatActivity {
         startActivityForResult(photoPickerIntent, IMAGE_GALLERY_REQUEST);
     }
 
+    /**
+     * 카메라 액티비티 보여주는 메소드임!
+     */
     private void camera(){
 
     }
@@ -175,7 +205,21 @@ public class PostActivity extends AppCompatActivity {
         //Show the Gallery
         if(requestCode == IMAGE_GALLERY_REQUEST) {
              if(intent != null) {
+                 //This part is for getting picture from the gallery and paste on the editText
+                 //It seems I need to use spannable code,but I can't figure it out right now
+                 //앨범에서 사진 골라서 에딧텍스트에 붙이는!
+                 /*
+                 Uri imageUri = intent.getData();
+                 String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
+                 Cursor cursor = getContentResolver().query(imageUri, filePathColumn, null, null, null);
+                 cursor.moveToFirst();
+
+                 int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+                 String img_Decodable_Str = cursor.getString(columnIndex);
+                 cursor.close();
+
+                 this.postContent.getText().setSpan(new ImageSpan(BitmapFactory.decodeFile(img_Decodable_Str)), 0, 5, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);*/
              }
              else{
 
