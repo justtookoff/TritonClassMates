@@ -4,4 +4,5 @@ This is an Android application to connect people who are in the same classes.
 File Name: README
 Authors: Dan Donghwee Kwon, dokwon@ucsd.edu
          Patrick Liu, ptliu@ucsd.edu
-Date: 17 June, 2017
+         Emily Kang, emk005@ucsd.edu
+Date: 10 August, 2017
